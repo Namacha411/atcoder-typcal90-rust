@@ -29,12 +29,11 @@ fn main() {
                         r: usize,
                         c: usize,
                     }
-                    (r - 1, c - 1)
+                    (r, c)
                 };
-                for (dx, dy) in dx.iter().zip(&dy) {
-                    let sx = x as i32 + dx;
-                    let sy = y as i32 + dy;
-                    let p1 = x * w + y;
+                for i in 0..4 {
+                    let sx = x as isize + dx[i];
+                    let sy = y as isize + dy[i];
                 }
             }
             2 => {

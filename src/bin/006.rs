@@ -1,16 +1,40 @@
-use itertools::Itertools;
 use proconio::{fastout, input};
 
 #[fastout]
 fn main() {
     input! {
-        n: usize,
+        _n: usize,
         k: usize,
         s: String
     };
 
-    let ss = &s.chars().sorted().collect::<String>()[0..k];
-    let ans = &s.chars().filter(|c| ss.contains(*c)).collect::<String>()[0..k];
+    let mut memo = vec![vec![0; s.len() + 1]; 26];
+    let s = s.chars().map(|c| c as u8 - b'a').collect::<Vec<_>>();
+    for i in 0..26 {
+        memo[i][s.len()] = s.len();
+    }
+    for i in (0..s.len()).rev() {
+        for j in 0..26 {
+            memo[j][i] = if s[i] as usize == j {
+                i
+            } else {
+                memo[j][i + 1]
+            };
+        }
+    }
+    let mut ans = "".to_string();
+    let mut now = 0;
+    for i in 0..k {
+        for j in 0..26 {
+            let next = memo[j][now];
+            let maxlen = i + s.len() - next;
+            if maxlen >= k {
+                ans += &((j as u8+ b'a') as char).to_string();
+                now = next + 1;
+                break;
+            }
+        }
+    }
 
-    print!("{}", ans);
+    println!("{}", ans);
 }
