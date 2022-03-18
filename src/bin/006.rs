@@ -10,8 +10,8 @@ fn main() {
 
     let mut memo = vec![vec![0; s.len() + 1]; 26];
     let s = s.chars().map(|c| c as u8 - b'a').collect::<Vec<_>>();
-    for i in 0..26 {
-        memo[i][s.len()] = s.len();
+    for memo in memo.iter_mut() {
+        memo[s.len()] = s.len();
     }
     for i in (0..s.len()).rev() {
         for j in 0..26 {

@@ -9,9 +9,9 @@ fn main() {
     };
 
     let mut a = a;
-    a.sort();
+    a.sort_unstable();
     let mut b = b;
-    b.sort();
+    b.sort_unstable();
     let ans = a.into_iter().zip(b).map(|(a, b)| (a - b).abs()).sum::<isize>();
 
     println!("{}", ans);

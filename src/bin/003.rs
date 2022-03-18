@@ -26,7 +26,7 @@ fn dfs(g: &Vec<Vec<usize>>, now: usize, from: isize) -> (usize, usize) {
         if *to as isize == from {
             continue;
         }
-        let (dist, vertex) = dfs(&g, *to, now as isize);
+        let (dist, vertex) = dfs(g, *to, now as isize);
         res = res.max((dist + 1, vertex));
     }
     res

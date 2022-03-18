@@ -15,7 +15,7 @@ fn main() {
             x /= 9;
         }
         vec.iter()
-            .map(|x| (*x as u8 + '0' as u8) as char)
+            .map(|x| (*x as u8 + b'0') as char)
             .rev()
             .collect_vec()
     };

@@ -39,7 +39,7 @@ mod dijkstra {
         }
     }
 
-    pub fn dijkstra(graph: &Vec<Vec<Edge>>, start: usize) -> Vec<usize> {
+    pub fn dijkstra(graph: &[Vec<Edge>], start: usize) -> Vec<usize> {
         const INF: usize = 1_000_000_000 + 7;
         let size = graph.len();
         let mut queue = BinaryHeap::new();

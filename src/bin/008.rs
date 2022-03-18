@@ -18,10 +18,8 @@ fn main() {
     for i in 0..slen {
         for j in 0..=alen {
             dp[i + 1][j] += dp[i][j];
-            if j < alen {
-                if s[i] == atcoder[j] {
-                    dp[i + 1][j + 1] += dp[i][j];
-                }
+            if j < alen && s[i] == atcoder[j] {
+                dp[i + 1][j + 1] += dp[i][j];
             }
         }
         for j in 0..=alen {
