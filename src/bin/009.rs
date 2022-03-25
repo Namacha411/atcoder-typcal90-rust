@@ -8,29 +8,22 @@ fn main() {
         xy: [(f64, f64); n]
     };
 
+    let angle = |point: (f64, f64)| -> f64 {
+        let (x, y) = point;
+        let i = x / (x.powi(2) + y.powi(2)).sqrt();
+        let angle = i.acos() * 180.0 / PI;
+        if y >= 0.0 { angle } else { 360.0 - angle }
+    };
     let mut ans = 0.0f64;
-    let norm = |a: (f64, f64)| { (a.0.powi(2) + a.1.powi(2)).sqrt() };
-    for i in 0..n {
-        let (o1, o2) = xy[i];
-        for j in 0..n {
+    for i in 1..=n {
+        let res = 0.0;
+        let mut v = vec![0;0];
+        for j in 1..=n {
             if i == j {
                 continue;
             }
-            for k in 0..n {
-                if i == k || j == k {
-                    continue;
-                }
-                let (a1, a2) = xy[j];
-                let (a1, a2) = (a1 - o1, a2 - o2);
-                let (b1, b2) = xy[k];
-                let (b1, b2) = (b1 - o1, b2 - o2);
-                let cos_theta = (a1 * b1 + a2 * b2) / (norm((a1, a2)) * norm((b1, b2)));
-                let theta = cos_theta.acos();
-                let deg = theta * 180.0 / PI;
-                // eprintln!("/P{}P{}P{} = {}[deg]", i, j, k, deg);
-                ans = ans.max(deg);
-            }
         }
+        ans = ans.max(res);
     }
 
     println!("{}", ans);
